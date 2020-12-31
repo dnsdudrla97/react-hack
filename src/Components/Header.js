@@ -1,29 +1,63 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link, withRouter} from 'react-router-dom';
+const Header = styled.header`
+  color: white;
+  position: fixed; // scroll action (current fixed)
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  background-color:rgba(20, 20, 20, 0.8);
+  z-index: 10px;
+  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.5);
+`;
 
 const List = styled.ul`
   display: flex;
-  &:hover {
-    background-color: blue;
-  }
+`;
+// name -> pseudo-element selector
+// :not -> not
+// :last-child -> last element child
+// & -> this
+const Item = styled.li`
+  width: 80px;
+  height: 50px;
+  text-align: center;
+  border-bottom: 3px solid
+    ${(props) => (props.current ? '#3498db' : 'transparent')};
+  transition: border-bottom 0.2s ease-in-out;
+  
+  /* &:not(:last-child) {
+    margin-right: 10px;
+  }  */
 `;
 
-const Header = () => (
-  <header>
+const SLink = styled(Link)`
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+`;
+
+const componentHeader = ({location: {pathname}}) => (
+  <Header>
     <List>
-      <ul>
-        <li>
-          <a href="/">Movies</a>
-        </li>
-        <li>
-          <a href="/tv">TV</a>
-        </li>
-        <li>
-          <a href="/search">Search</a>
-        </li>
-      </ul>
+      <Item current={pathname === '/'}>
+        <SLink to="/">Movies</SLink>
+      </Item>
+      <Item current={pathname === '/tv'}>
+        <SLink to="/tv">TV</SLink>
+      </Item>
+      <Item current={pathname === '/search'}>
+        <SLink to="/search">Search</SLink>
+      </Item>
     </List>
-  </header>
+  </Header>
 );
 
-export default Header;
+
+export default withRouter(componentHeader);
