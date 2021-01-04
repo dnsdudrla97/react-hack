@@ -1,3 +1,4 @@
+import {tvApi} from 'api';
 import React from 'react';
 import TVPresenter from './TVPresenter';
 
@@ -15,11 +16,26 @@ class tvState extends React.Component {
     loading: true,
   };
   /**
- * Adds two numbers together.
- * @param {int} num1 The first number.
- * @param {int} num2 The second number.
- * @return {void}
- */
+   * tvApi state
+   */
+  async componentDidMount() {
+    const {
+      data: {results: topRated},
+    } = await tvApi.topRated();
+    const {
+      data: {results: popular},
+    } = await tvApi.popular();
+    const {
+      data: {results: airingToday},
+    } = await tvApi.airingToday();
+    this.setState({topRated, popular, airingToday});
+  }
+  /**
+   * Adds two numbers together.
+   * @param {int} num1 The first number.
+   * @param {int} num2 The second number.
+   * @return {void}
+   */
   render() {
     const {topRated, popular, airingToday, error, loading} = this.state;
     return (

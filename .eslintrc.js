@@ -18,5 +18,7 @@ module.exports = {
     'react',
   ],
   'rules': {
+    'no-invalid-this': 'off',
+    'react/prop-types': 'off',
   },
 };

@@ -9,6 +9,7 @@ import Header from 'Components/Header';
 import Home from 'Routes/Home';
 import Search from 'Routes/Search';
 import TV from 'Routes/TV';
+import Detail from 'Routes/Detail';
 
 const routeTree = () => (
   <Router>
@@ -20,7 +21,8 @@ const routeTree = () => (
         <Route path="/tv" exact component={TV} />
         <Route path="/tv/popular" render={() => <h1>Popular</h1>} />
         <Route path="/search" component={Search} />
-        {/* 어느 페이지에 접근했을때 false를 내포할경우 / redirection */}
+        <Route path="/movie/:id" component={Detail}/>
+        <Route path="/show/:id" component={Detail}/>
         <Redirect from="*" to="/" />
       </Switch>
     </>
