@@ -61,9 +61,9 @@ class searchState extends React.Component {
         movieResults={movieResults}
         tvResults={tvResults}
         searchTerm={searchTerm}
-        error={error}
-        loading={loading}
         handleSubmit={this.handleSubmit}
+        loading={loading}
+        error={error}
       />
     );
   }
