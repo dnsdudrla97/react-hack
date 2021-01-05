@@ -20,5 +20,6 @@ module.exports = {
   'rules': {
     'no-invalid-this': 'off',
     'react/prop-types': 'off',
+    'Unexpected token': 'off',
   },
 };

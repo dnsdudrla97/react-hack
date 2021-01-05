@@ -19,16 +19,26 @@ class tvState extends React.Component {
    * tvApi state
    */
   async componentDidMount() {
-    const {
-      data: {results: topRated},
-    } = await tvApi.topRated();
-    const {
-      data: {results: popular},
-    } = await tvApi.popular();
-    const {
-      data: {results: airingToday},
-    } = await tvApi.airingToday();
-    this.setState({topRated, popular, airingToday});
+    try {
+      const {
+        data: {results: topRated},
+      } = await tvApi.topRated();
+      const {
+        data: {results: popular},
+      } = await tvApi.popular();
+      const {
+        data: {results: airingToday},
+      } = await tvApi.airingToday();
+      this.setState({topRated, popular, airingToday});
+    } catch {
+      this.setState({
+        error: 'Can not find TV information',
+      });
+    } finally {
+      this.setState({
+        loading: false,
+      });
+    }
   }
   /**
    * Adds two numbers together.
@@ -38,6 +48,7 @@ class tvState extends React.Component {
    */
   render() {
     const {topRated, popular, airingToday, error, loading} = this.state;
+    console.log(this.state);
     return (
       <TVPresenter
         topRated={topRated}
