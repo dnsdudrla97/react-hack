@@ -65,7 +65,6 @@ const Overview = styled.p`
   line-height: 1.5;
   width: 50%;
 `;
-
 const DetailPresenter = ({result, error, loading}) =>
   loading ? (
     <Loader />
